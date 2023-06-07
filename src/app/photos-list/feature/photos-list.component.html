@@ -1,5 +1,11 @@
-<mat-grid-list cols="3" gutterSize="16">
-  <mat-grid-tile *ngFor="let photo of photos$ | async">
-    <app-photo [photo]="photo"></app-photo>
-  </mat-grid-tile>
-</mat-grid-list>
+<app-infinite-scroll (loadMore$)="onLoadMore()">
+  <mat-grid-list cols="3" gutterSize="16">
+    <mat-grid-tile *ngFor="let photo of photos$ | async">
+      <app-photo [photo]="photo"></app-photo>
+    </mat-grid-tile>
+  </mat-grid-list>
+
+  <div *ngIf="loading$ | async" class="loading-wrapper">
+    <mat-spinner></mat-spinner>
+  </div>
+</app-infinite-scroll>

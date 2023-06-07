@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { PhotosListService } from '../data-access/photos-list.service';
-import { catchError, of } from 'rxjs';
+import { catchError, filter, of, switchMap, take, tap } from 'rxjs';
 
 @Component({
   selector: 'app-photos-list',
@@ -9,8 +9,27 @@ import { catchError, of } from 'rxjs';
 })
 export class PhotosListComponent {
   photos$ = this.photosListService.loadedPhotos$;
+  loading$ = this.photosListService.loading$;
 
-  constructor(private photosListService: PhotosListService) {}
+  onLoadMore() {
+    this.loading$
+      .pipe(
+        take(1),
+        filter((loading) => !loading),
+        switchMap(() =>
+          this.photosListService.loadMorePhotos().pipe(
+            catchError((res) => {
+              console.log('Error: ', res);
+              window.alert(
+                'Could not load more photos. Please try again later'
+              );
+              return of(res);
+            })
+          )
+        )
+      )
+      .subscribe();
+  }
 
   ngOnInit() {
     this.photosListService
@@ -24,4 +43,6 @@ export class PhotosListComponent {
       )
       .subscribe();
   }
+
+  constructor(private photosListService: PhotosListService) {}
 }

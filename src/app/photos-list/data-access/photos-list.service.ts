@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
+import { BehaviorSubject, Observable, finalize, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 export interface Photo {
@@ -17,16 +17,19 @@ export interface Photo {
 export class PhotosListService {
   private _loadedPhotos = new BehaviorSubject([] as Photo[]);
   private _page = 1;
+  private _loading = new BehaviorSubject(false);
 
   loadedPhotos$: Observable<Photo[]> = this._loadedPhotos.asObservable();
+  loading$: Observable<boolean> = this._loading.asObservable();
 
   loadMorePhotos() {
+    this._loading.next(true);
     return this._getPhotos(this._page + 1).pipe(
       tap((res) => {
-        console.log('Success: ', res);
         this._page++;
         this._pushLoadedPhotos(res);
-      })
+      }),
+      finalize(() => this._loading.next(false))
     );
   }
 
