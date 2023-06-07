@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Photo } from '../../data-access/photos-list.service';
 
 @Component({
   selector: 'app-photo',
@@ -6,5 +7,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./photo.component.scss'],
 })
 export class PhotoComponent {
-  @Input() imageName!: string;
+  @Input() photo!: Photo;
 }
