@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FavoritesService } from './favorites/data-access/favorites.service';
 import { PhotosListService } from './photos-list/data-access/photos-list.service';
 
@@ -6,6 +6,7 @@ import { PhotosListService } from './photos-list/data-access/photos-list.service
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
   constructor(

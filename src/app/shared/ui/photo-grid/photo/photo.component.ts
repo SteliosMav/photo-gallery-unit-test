@@ -1,5 +1,6 @@
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   HostListener,
@@ -14,6 +15,7 @@ import { Photo } from 'src/app/photos-list/data-access/photos-list.service';
   selector: 'app-photo',
   templateUrl: './photo.component.html',
   styleUrls: ['./photo.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PhotoComponent implements AfterViewInit {
   @Input() photo!: Photo;

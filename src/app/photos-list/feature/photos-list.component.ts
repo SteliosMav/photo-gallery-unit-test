@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Photo, PhotosListService } from '../data-access/photos-list.service';
 import { Observable, combineLatest, filter, switchMap, take, tap } from 'rxjs';
 import { FavoritesService } from 'src/app/favorites/data-access/favorites.service';
@@ -12,6 +12,7 @@ interface ViewModel {
   selector: 'app-photos-list',
   templateUrl: './photos-list.component.html',
   styleUrls: ['./photos-list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PhotosListComponent implements OnInit {
   viewModel$: Observable<ViewModel> = combineLatest({

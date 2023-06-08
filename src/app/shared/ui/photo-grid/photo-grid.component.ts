@@ -1,4 +1,9 @@
-import { Component, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  Output,
+} from '@angular/core';
 import { Subject } from 'rxjs';
 import { Photo } from 'src/app/photos-list/data-access/photos-list.service';
 
@@ -6,6 +11,7 @@ import { Photo } from 'src/app/photos-list/data-access/photos-list.service';
   selector: 'app-photo-grid',
   templateUrl: './photo-grid.component.html',
   styleUrls: ['./photo-grid.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PhotoGridComponent {
   @Input() photos!: Photo[];

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap, tap } from 'rxjs';
 import { PhotoDetailsService } from '../data-access/photo-details.service';
@@ -12,6 +12,7 @@ import { FavoritesService } from 'src/app/favorites/data-access/favorites.servic
   selector: 'app-photo-details',
   templateUrl: './photo-details.component.html',
   styleUrls: ['./photo-details.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PhotoDetailsComponent implements OnInit {
   photo$ = this.route.params.pipe(

@@ -1,4 +1,10 @@
-import { Component, ElementRef, HostListener, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  HostListener,
+  Output,
+} from '@angular/core';
 import { Subject } from 'rxjs';
 import { LOAD_MORE_PIXELS_OFFSET } from 'src/environments/constants';
 
@@ -6,6 +12,7 @@ import { LOAD_MORE_PIXELS_OFFSET } from 'src/environments/constants';
   selector: 'app-infinite-scroll',
   templateUrl: './infinite-scroll.component.html',
   styleUrls: ['./infinite-scroll.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InfiniteScrollComponent {
   @Output() loadMore$ = new Subject();
