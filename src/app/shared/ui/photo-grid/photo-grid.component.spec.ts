@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PhotoComponent } from './photo.component';
+import { PhotoGridComponent } from './photo-grid.component';
 
-describe('PhotoComponent', () => {
-  let component: PhotoComponent;
-  let fixture: ComponentFixture<PhotoComponent>;
+describe('PhotoGridComponent', () => {
+  let component: PhotoGridComponent;
+  let fixture: ComponentFixture<PhotoGridComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [PhotoComponent],
+      declarations: [PhotoGridComponent]
     });
-    fixture = TestBed.createComponent(PhotoComponent);
+    fixture = TestBed.createComponent(PhotoGridComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

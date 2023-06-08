@@ -1,5 +1,4 @@
-<mat-grid-list cols="3" gutterSize="16">
-  <mat-grid-tile *ngFor="let photo of photos$ | async">
-    <app-photo [photo]="photo"></app-photo>
-  </mat-grid-tile>
-</mat-grid-list>
+<app-photo-grid
+  [photos]="(photos$ | async) ?? []"
+  (removePhotoFromFavorites)="removePhotoFromFavorites($event)"
+></app-photo-grid>

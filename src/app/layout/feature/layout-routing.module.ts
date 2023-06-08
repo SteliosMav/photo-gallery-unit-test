@@ -22,6 +22,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'photos/:id',
+        loadChildren: () =>
+          import('../../photo-details/feature/photo-details.module').then(
+            (m) => m.PhotoDetailsModule
+          ),
+      },
+      {
         path: '**',
         redirectTo: '',
       },

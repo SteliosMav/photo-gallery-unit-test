@@ -1,0 +1,14 @@
+<article *ngIf="photo$ | async as photo; else loading">
+  <img [src]="photo.download_url" [alt]="photo.author" />
+  <div class="btn-wrapper">
+    <button (click)="togglePhotoSFavoriteState(photo)" mat-raised-button>
+      <mat-icon [ngClass]="{ 'favorite-mat-icon': photo.isFavorite }">
+        favorite
+      </mat-icon>
+    </button>
+  </div>
+</article>
+
+<ng-template #loading>
+  <app-loading-indicator></app-loading-indicator>
+</ng-template>

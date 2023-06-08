@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Photo, PhotosListService } from '../data-access/photos-list.service';
-import { catchError, filter, of, switchMap, take, tap } from 'rxjs';
+import { Observable, combineLatest, filter, switchMap, take, tap } from 'rxjs';
 import { FavoritesService } from 'src/app/favorites/data-access/favorites.service';
+
+interface ViewModel {
+  photos: Photo[];
+  loading: boolean;
+}
 
 @Component({
   selector: 'app-photos-list',
@@ -9,14 +14,16 @@ import { FavoritesService } from 'src/app/favorites/data-access/favorites.servic
   styleUrls: ['./photos-list.component.scss'],
 })
 export class PhotosListComponent implements OnInit {
-  photos$ = this.photosListService.loadedPhotos$;
-  loading$ = this.photosListService.loading$;
+  viewModel$: Observable<ViewModel> = combineLatest({
+    photos: this.photosListService.loadedPhotos$,
+    loading: this.photosListService.loading$,
+  });
 
   onLoadMore() {
-    this.loading$
+    this.viewModel$
       .pipe(
         take(1),
-        filter((loading) => !loading),
+        filter(({ loading }) => !loading),
         switchMap(() => this.photosListService.loadMorePhotos())
       )
       .subscribe();

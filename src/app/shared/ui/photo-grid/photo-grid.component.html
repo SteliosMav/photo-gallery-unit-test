@@ -1,0 +1,13 @@
+<mat-grid-list cols="3" gutterSize="16">
+  <mat-grid-tile *ngFor="let photo of photos">
+    <app-photo
+      [photo]="photo"
+      (addToFavorites)="addPhotoToFavorites.next($event)"
+      (removeFromFavorites)="removePhotoFromFavorites.next($event)"
+    ></app-photo>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<div *ngIf="loading" class="loading-wrapper">
+  <app-loading-indicator></app-loading-indicator>
+</div>

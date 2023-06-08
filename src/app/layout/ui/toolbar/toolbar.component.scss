@@ -1,9 +1,11 @@
-mat-toolbar {
+nav {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
   gap: 6rem;
 }
 
 .router-link-active {
+  color: rgb(150, 92, 208) !important;
 }

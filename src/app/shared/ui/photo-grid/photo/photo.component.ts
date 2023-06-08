@@ -4,12 +4,11 @@ import {
   ElementRef,
   HostListener,
   Input,
-  OnInit,
   Output,
 } from '@angular/core';
-import { Photo } from '../../data-access/photos-list.service';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { Router } from '@angular/router';
+import { Photo } from 'src/app/photos-list/data-access/photos-list.service';
 
 @Component({
   selector: 'app-photo',

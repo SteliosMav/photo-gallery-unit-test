@@ -1,0 +1,46 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  border: solid red;
+  box-sizing: border-box;
+  background-color: gainsboro;
+}
+
+article {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  box-sizing: border-box;
+
+  img {
+    display: block;
+    flex: 1;
+    object-fit: contain;
+    max-height: calc(100% - 20%);
+  }
+}
+
+.btn-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-height: 20%;
+}
+
+button {
+  height: 3rem !important;
+}
+
+mat-icon {
+  margin: 0 !important;
+}
+
+.favorite-mat-icon {
+  color: rgb(209, 58, 58);
+}

@@ -1,22 +1,23 @@
 <mat-toolbar>
-  <button
-    mat-raised-button
-    class="example-icon favorite-icon"
-    aria-label="Example icon-button with heart icon"
-    [routerLink]="['/']"
-    routerLinkActive="router-link-active"
-  >
-    <span>Photos </span>
-    <mat-icon>menu</mat-icon>
-  </button>
-  <button
-    mat-raised-button
-    class="example-icon favorite-icon"
-    aria-label="Example icon-button with heart icon"
-    [routerLink]="['/favorites']"
-    routerLinkActive="router-link-active"
-  >
-    <span>Favorites </span>
-    <mat-icon>favorite</mat-icon>
-  </button>
+  <nav>
+    <a
+      mat-raised-button
+      [routerLink]="['/']"
+      routerLinkActive="router-link-active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <span>Photos </span>
+      <mat-icon>menu</mat-icon>
+    </a>
+
+    <a
+      mat-raised-button
+      [routerLink]="['/favorites']"
+      routerLinkActive="router-link-active"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      <span>Favorites </span>
+      <mat-icon>favorite</mat-icon>
+    </a>
+  </nav>
 </mat-toolbar>
