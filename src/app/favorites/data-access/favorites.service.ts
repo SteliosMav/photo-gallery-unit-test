@@ -1,9 +1,7 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, finalize, map, tap } from 'rxjs';
-import {
-  Photo,
-  PhotosListService,
-} from 'src/app/photos-list/data-access/photos-list.service';
+import { BehaviorSubject } from 'rxjs';
+import { Photo } from 'src/app/photos-list/data-access/photos-list.service';
+import { FAVORITE_PHOTOS_STORAGE_KEY } from 'src/environments/constants';
 
 @Injectable({
   providedIn: 'root',
@@ -14,7 +12,9 @@ export class FavoritesService {
   favoritePhotos$ = this._favoritePhotos.asObservable();
 
   initFavoritePhotos() {
-    const favoritePhotosStorageValue = localStorage.getItem('favoritePhotos');
+    const favoritePhotosStorageValue = localStorage.getItem(
+      FAVORITE_PHOTOS_STORAGE_KEY
+    );
     if (favoritePhotosStorageValue) {
       const favoritePhotos: Photo[] = JSON.parse(favoritePhotosStorageValue);
       this._favoritePhotos.next(favoritePhotos);
@@ -45,6 +45,6 @@ export class FavoritesService {
   constructor() {}
 
   private _setStorage(photos: Photo[]) {
-    localStorage.setItem('favoritePhotos', JSON.stringify(photos));
+    localStorage.setItem(FAVORITE_PHOTOS_STORAGE_KEY, JSON.stringify(photos));
   }
 }

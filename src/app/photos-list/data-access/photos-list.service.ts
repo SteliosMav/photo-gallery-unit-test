@@ -11,6 +11,7 @@ import {
 } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { FavoritesService } from 'src/app/favorites/data-access/favorites.service';
+import { environment } from 'src/environments/environment';
 
 export interface Photo {
   id: string;
@@ -87,7 +88,7 @@ export class PhotosListService {
 
   private _getPhotos(page: number) {
     return this.http
-      .get<Photo[]>(`https://picsum.photos/v2/list?page=${page}`)
+      .get<Photo[]>(`${environment.api}/v2/list?page=${page}`)
       .pipe(
         map((photos) =>
           photos.map((photo) => {

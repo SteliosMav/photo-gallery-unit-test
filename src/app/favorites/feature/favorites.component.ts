@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FavoritesService } from '../data-access/favorites.service';
-import { catchError, filter, of, switchMap, take, tap } from 'rxjs';
 import {
   Photo,
   PhotosListService,

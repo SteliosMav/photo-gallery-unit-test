@@ -7,16 +7,15 @@ import {
   catchError,
   combineLatest,
   finalize,
-  map,
   of,
   switchMap,
-  tap,
 } from 'rxjs';
 import { FavoritesService } from 'src/app/favorites/data-access/favorites.service';
 import {
   Photo,
   PhotosListService,
 } from 'src/app/photos-list/data-access/photos-list.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -58,6 +57,6 @@ export class PhotoDetailsService {
   ) {}
 
   private _getPhoto(id: string): Observable<Photo> {
-    return this.http.get<Photo>(`https://picsum.photos/id/${id}/info`);
+    return this.http.get<Photo>(`${environment.api}/id/${id}/info`);
   }
 }

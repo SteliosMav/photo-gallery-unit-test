@@ -1,5 +1,6 @@
 import { Component, ElementRef, HostListener, Output } from '@angular/core';
 import { Subject } from 'rxjs';
+import { LOAD_MORE_PIXELS_OFFSET } from 'src/environments/constants';
 
 @Component({
   selector: 'app-infinite-scroll',
@@ -16,7 +17,7 @@ export class InfiniteScrollComponent {
     const scrollTop = hostEl.scrollTop;
     const scrollHeight = hostEl.scrollHeight;
     const clientHeight = hostEl.clientHeight;
-    const offset = 200; // The amount of pixels to emit event before bottom is reached
+    const offset = LOAD_MORE_PIXELS_OFFSET;
 
     if (scrollTop + clientHeight >= scrollHeight - offset) {
       this.loadMore$.next(true);
