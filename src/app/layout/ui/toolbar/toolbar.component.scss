@@ -1,3 +1,5 @@
+@import "src/styles/variables.scss";
+
 nav {
   display: flex;
   align-items: center;
@@ -7,5 +9,5 @@ nav {
 }
 
 .router-link-active {
-  color: rgb(150, 92, 208) !important;
+  background-color: $primary !important;
 }
