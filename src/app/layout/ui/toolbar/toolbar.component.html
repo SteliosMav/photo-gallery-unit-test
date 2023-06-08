@@ -3,6 +3,8 @@
     mat-raised-button
     class="example-icon favorite-icon"
     aria-label="Example icon-button with heart icon"
+    [routerLink]="['/']"
+    routerLinkActive="router-link-active"
   >
     <span>Photos </span>
     <mat-icon>menu</mat-icon>
@@ -11,6 +13,8 @@
     mat-raised-button
     class="example-icon favorite-icon"
     aria-label="Example icon-button with heart icon"
+    [routerLink]="['/favorites']"
+    routerLinkActive="router-link-active"
   >
     <span>Favorites </span>
     <mat-icon>favorite</mat-icon>

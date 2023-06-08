@@ -6,11 +6,13 @@ import { ToolbarComponent } from './toolbar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [ToolbarComponent],
   imports: [
     CommonModule,
+    RouterModule,
 
     // Angular Material
     MatToolbarModule,

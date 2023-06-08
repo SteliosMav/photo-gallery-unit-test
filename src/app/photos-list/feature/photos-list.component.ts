@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
-import { PhotosListService } from '../data-access/photos-list.service';
+import { Component, OnInit } from '@angular/core';
+import { Photo, PhotosListService } from '../data-access/photos-list.service';
 import { catchError, filter, of, switchMap, take, tap } from 'rxjs';
+import { FavoritesService } from 'src/app/favorites/data-access/favorites.service';
 
 @Component({
   selector: 'app-photos-list',
   templateUrl: './photos-list.component.html',
   styleUrls: ['./photos-list.component.scss'],
 })
-export class PhotosListComponent {
+export class PhotosListComponent implements OnInit {
   photos$ = this.photosListService.loadedPhotos$;
   loading$ = this.photosListService.loading$;
 
@@ -16,33 +17,33 @@ export class PhotosListComponent {
       .pipe(
         take(1),
         filter((loading) => !loading),
-        switchMap(() =>
-          this.photosListService.loadMorePhotos().pipe(
-            catchError((res) => {
-              console.log('Error: ', res);
-              window.alert(
-                'Could not load more photos. Please try again later'
-              );
-              return of(res);
-            })
-          )
+        switchMap(() => this.photosListService.loadMorePhotos())
+      )
+      .subscribe();
+  }
+
+  addPhotoToFavorites(photo: Photo) {
+    this.photosListService.updateOne(photo.id, { isFavorite: true });
+    this.favoritesService.addPhotoToFavorites(photo);
+  }
+
+  removePhotoFromFavorites(photo: Photo) {
+    this.photosListService.updateOne(photo.id, { isFavorite: false });
+    this.favoritesService.removePhotoFromFavorites(photo);
+  }
+
+  ngOnInit() {
+    this.photosListService.failedToLoadPhotos$
+      .pipe(
+        tap(() =>
+          window.alert('Could not load more photos. Please try again later')
         )
       )
       .subscribe();
   }
 
-  ngOnInit() {
-    this.photosListService
-      .loadMorePhotos()
-      .pipe(
-        catchError((res) => {
-          console.log('Error: ', res);
-          window.alert('Could not load more photos. Please try again later');
-          return of(res);
-        })
-      )
-      .subscribe();
-  }
-
-  constructor(private photosListService: PhotosListService) {}
+  constructor(
+    private photosListService: PhotosListService,
+    private favoritesService: FavoritesService
+  ) {}
 }

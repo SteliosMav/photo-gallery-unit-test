@@ -1,7 +1,11 @@
 <app-infinite-scroll (loadMore$)="onLoadMore()">
   <mat-grid-list cols="3" gutterSize="16">
     <mat-grid-tile *ngFor="let photo of photos$ | async">
-      <app-photo [photo]="photo"></app-photo>
+      <app-photo
+        [photo]="photo"
+        (addToFavorites)="addPhotoToFavorites($event)"
+        (removeFromFavorites)="removePhotoFromFavorites($event)"
+      ></app-photo>
     </mat-grid-tile>
   </mat-grid-list>
 

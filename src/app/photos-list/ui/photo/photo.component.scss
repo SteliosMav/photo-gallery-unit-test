@@ -1,13 +1,25 @@
 :host {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  gap: 8px;
+  box-sizing: border-box;
   height: 100%;
   width: 100%;
+  padding: 1rem;
   background: lightblue;
+  cursor: pointer;
+
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
 }
 
-img {
-  height: 100%;
-  width: 100%;
+button {
+  background-color: aliceblue;
+}
+
+mat-icon {
+  color: gray;
+}
+
+.favorite-mat-icon {
+  color: rgb(209, 58, 58);
 }

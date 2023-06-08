@@ -14,6 +14,17 @@ const routes: Routes = [
             (m) => m.PhotosListModule
           ),
       },
+      {
+        path: 'favorites',
+        loadChildren: () =>
+          import('../../favorites/feature/favorites.module').then(
+            (m) => m.FavoritesModule
+          ),
+      },
+      {
+        path: '**',
+        redirectTo: '',
+      },
     ],
   },
 ];

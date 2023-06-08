@@ -1,6 +1,10 @@
-<img
-  [src]="photo.download_url"
-  [alt]="photo.author"
-  [height]="photo.height"
-  [width]="photo.width"
-/>
+<button
+  *ngIf="hovered$ | async"
+  (click)="toggleFavoriteButton()"
+  mat-icon-button
+  aria-label="Example icon-button with heart icon"
+>
+  <mat-icon [ngClass]="{ 'favorite-mat-icon': photo.isFavorite }">
+    favorite
+  </mat-icon>
+</button>
