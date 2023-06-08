@@ -6,6 +6,7 @@ import {
   Subject,
   catchError,
   combineLatest,
+  delay,
   finalize,
   of,
   switchMap,
@@ -57,6 +58,8 @@ export class PhotoDetailsService {
   ) {}
 
   private _getPhoto(id: string): Observable<Photo> {
-    return this.http.get<Photo>(`${environment.api}/id/${id}/info`);
+    return this.http
+      .get<Photo>(`${environment.api}/id/${id}/info`)
+      .pipe(delay(environment.requestAdditionalTimeDelay));
   }
 }

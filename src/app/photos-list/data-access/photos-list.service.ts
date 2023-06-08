@@ -4,6 +4,7 @@ import {
   Observable,
   Subject,
   catchError,
+  delay,
   finalize,
   map,
   of,
@@ -90,6 +91,7 @@ export class PhotosListService {
     return this.http
       .get<Photo[]>(`${environment.api}/v2/list?page=${page}`)
       .pipe(
+        delay(environment.requestAdditionalTimeDelay),
         map((photos) =>
           photos.map((photo) => {
             const isFavorite = this.favoriteService.findOne(photo.id)
