@@ -11,15 +11,18 @@ import {
   styleUrls: ['./favorites.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FavoritesComponent implements OnInit {
+export class FavoritesComponent {
+  /** Observable stream of favorite photos. */
   photos$ = this.favoritesService.favoritePhotos$;
 
-  removePhotoFromFavorites(photo: Photo) {
+  /**
+   * Removes a photo from favorites.
+   * @param photo The photo to remove from favorites.
+   */
+  removePhotoFromFavorites(photo: Photo): void {
     this.photosListService.updateOne(photo.id, { isFavorite: false });
     this.favoritesService.removePhotoFromFavorites(photo);
   }
-
-  ngOnInit() {}
 
   constructor(
     private favoritesService: FavoritesService,

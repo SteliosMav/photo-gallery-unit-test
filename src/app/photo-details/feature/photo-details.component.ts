@@ -15,11 +15,16 @@ import { FavoritesService } from 'src/app/favorites/data-access/favorites.servic
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PhotoDetailsComponent implements OnInit {
+  /** Represents the observable stream of the photo details */
   photo$ = this.route.params.pipe(
     switchMap(({ id }) => this.photoDetailsService.findPhoto(id))
   );
 
-  togglePhotoSFavoriteState(photo: Photo) {
+  /**
+   * Toggles the favorite state of the photo.
+   * @param photo The photo to toggle the favorite state for.
+   */
+  togglePhotoSFavoriteState(photo: Photo): void {
     if (photo.isFavorite) {
       this.photosListService.updateOne(photo.id, { isFavorite: false });
       this.favoritesService.removePhotoFromFavorites(photo);
@@ -37,6 +42,7 @@ export class PhotoDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // Subscribes to the `failedToLoadPhoto$` observable to handle failed photo loading
     this.photoDetailsService.failedToLoadPhoto$
       .pipe(
         tap(() =>

@@ -22,11 +22,20 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class PhotoDetailsService {
+  /** Represents the loading state of the photo details */
   private _loading = new BehaviorSubject(false);
 
+  /** Observable stream indicating the loading state of the photo details. */
   loading$ = this._loading.asObservable();
+
+  /** Subject for signaling when the photo failed to load. */
   failedToLoadPhoto$: Subject<boolean> = new Subject();
 
+  /**
+   * Finds a photo by its ID.
+   * @param id The ID of the photo to find.
+   * @returns An observable stream of the found photo.
+   */
   findPhoto(id: string): Observable<Photo> {
     this._loading.next(true);
     return combineLatest({
@@ -57,6 +66,11 @@ export class PhotoDetailsService {
     private http: HttpClient
   ) {}
 
+  /**
+   * Retrieves the photo details from the API for the given ID.
+   * @param id The ID of the photo.
+   * @returns An Observable emitting the photo details.
+   */
   private _getPhoto(id: string): Observable<Photo> {
     return this.http
       .get<Photo>(`${environment.api}/id/${id}/info`)

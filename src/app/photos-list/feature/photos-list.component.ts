@@ -15,12 +15,16 @@ interface ViewModel {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PhotosListComponent implements OnInit {
+  // Observable to expose the view model
   viewModel$: Observable<ViewModel> = combineLatest({
     photos: this.photosListService.loadedPhotos$,
     loading: this.photosListService.loading$,
   });
 
-  onLoadMore() {
+  /**
+   * Loads more photos when triggered.
+   */
+  onLoadMore(): void {
     this.viewModel$
       .pipe(
         take(1),
@@ -30,17 +34,26 @@ export class PhotosListComponent implements OnInit {
       .subscribe();
   }
 
-  addPhotoToFavorites(photo: Photo) {
+  /**
+   * Adds a photo to favorites.
+   * @param photo - The photo to add to favorites.
+   */
+  addPhotoToFavorites(photo: Photo): void {
     this.photosListService.updateOne(photo.id, { isFavorite: true });
     this.favoritesService.addPhotoToFavorites(photo);
   }
 
-  removePhotoFromFavorites(photo: Photo) {
+  /**
+   * Removes a photo from favorites.
+   * @param photo - The photo to remove from favorites.
+   */
+  removePhotoFromFavorites(photo: Photo): void {
     this.photosListService.updateOne(photo.id, { isFavorite: false });
     this.favoritesService.removePhotoFromFavorites(photo);
   }
 
   ngOnInit() {
+    // Subscribes to the `failedToLoadPhoto$` observable to handle failed photo loading
     this.photosListService.failedToLoadPhotos$
       .pipe(
         tap(() =>
