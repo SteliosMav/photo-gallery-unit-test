@@ -5,7 +5,7 @@ import { PhotoGridComponent } from './photo-grid.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { PhotoModule } from './photo/photo.module';
 import { InfiniteScrollModule } from '../infinite-scroll/infinite-scroll.module';
-import { LoadingIndicatorModule } from '../loading-indicator/loading-indicator.module';
+import { LoadingIndicatorComponent } from '../loading-indicator/loading-indicator.component';
 
 @NgModule({
   declarations: [PhotoGridComponent],
@@ -15,7 +15,7 @@ import { LoadingIndicatorModule } from '../loading-indicator/loading-indicator.m
     MatGridListModule,
     PhotoModule,
     InfiniteScrollModule,
-    LoadingIndicatorModule,
+    LoadingIndicatorComponent,
   ],
   exports: [PhotoGridComponent],
 })
