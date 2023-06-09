@@ -8,7 +8,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, MatProgressSpinnerModule],
-  styles: [``],
+  styleUrls: [],
   template: `<mat-spinner></mat-spinner>`,
 })
 export class LoadingIndicatorComponent {}
