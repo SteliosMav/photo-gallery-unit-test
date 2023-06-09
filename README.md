@@ -4,6 +4,8 @@
 
 This project is an Angular application developed for XM Test.
 
+**Hosting URL: [https://xm-test-16ed3.web.app](https://xm-test-16ed3.web.app)**
+
 ## Prerequisites
 
 Make sure you have the following software installed:
