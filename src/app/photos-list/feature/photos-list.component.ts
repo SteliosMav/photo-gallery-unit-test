@@ -1,6 +1,15 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Photo, PhotosListService } from '../data-access/photos-list.service';
-import { Observable, combineLatest, filter, switchMap, take, tap } from 'rxjs';
+import {
+  Observable,
+  Subject,
+  combineLatest,
+  filter,
+  switchMap,
+  take,
+  takeUntil,
+  tap,
+} from 'rxjs';
 import { FavoritesService } from 'src/app/favorites/data-access/favorites.service';
 
 interface ViewModel {
@@ -56,6 +65,7 @@ export class PhotosListComponent implements OnInit {
     // Subscribes to the `failedToLoadPhoto$` observable to handle failed photo loading
     this.photosListService.failedToLoadPhotos$
       .pipe(
+        takeUntil(this._destroy$),
         tap(() =>
           window.alert('Could not load more photos. Please try again later')
         )
@@ -67,4 +77,10 @@ export class PhotosListComponent implements OnInit {
     private photosListService: PhotosListService,
     private favoritesService: FavoritesService
   ) {}
+
+  private _destroy$ = new Subject();
+
+  ngOnDestroy(): void {
+    this._destroy$.next(true);
+  }
 }

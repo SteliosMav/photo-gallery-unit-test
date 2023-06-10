@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { switchMap, tap } from 'rxjs';
+import { Subject, switchMap, takeUntil, tap } from 'rxjs';
 import { PhotoDetailsService } from '../data-access/photo-details.service';
 import {
   Photo,
@@ -45,10 +45,17 @@ export class PhotoDetailsComponent implements OnInit {
     // Subscribes to the `failedToLoadPhoto$` observable to handle failed photo loading
     this.photoDetailsService.failedToLoadPhoto$
       .pipe(
+        takeUntil(this._destroy$),
         tap(() =>
           window.alert('Could not load more photos. Please try again later')
         )
       )
       .subscribe();
+  }
+
+  private _destroy$ = new Subject();
+
+  ngOnDestroy(): void {
+    this._destroy$.next(true);
   }
 }
