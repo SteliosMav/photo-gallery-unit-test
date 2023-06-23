@@ -15,7 +15,7 @@ Make sure you have the following software installed:
 
 ## Installation
 
-1. Clone the repository: `git clone <repository-url>`
+1. Clone the repository: `git clone https://github.com/SteliosMav/photo-gallery-unit-test.git`
 2. Navigate to the project directory: `cd photo-gallery-unit-test`
 3. Install the dependencies: `npm install`
 
