@@ -1,4 +1,4 @@
-# xm-test
+# photo-gallery-unit-test
 
 ## Description
 
@@ -16,7 +16,7 @@ Make sure you have the following software installed:
 ## Installation
 
 1. Clone the repository: `git clone <repository-url>`
-2. Navigate to the project directory: `cd xm-test`
+2. Navigate to the project directory: `cd photo-gallery-unit-test`
 3. Install the dependencies: `npm install`
 
 ## Development Server

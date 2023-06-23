@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "xm-test": {
+    "photo-gallery-unit-test": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -62,10 +62,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "xm-test:build:production"
+              "browserTarget": "photo-gallery-unit-test:build:production"
             },
             "development": {
-              "browserTarget": "xm-test:build:development"
+              "browserTarget": "photo-gallery-unit-test:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -73,7 +73,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "xm-test:build"
+            "browserTarget": "photo-gallery-unit-test:build"
           }
         },
         "test": {
